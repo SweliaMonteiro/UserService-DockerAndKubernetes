@@ -5,7 +5,7 @@
 You are working on a project that requires you to create a user service. Deploy the user service using Docker and Kubernetes. 
 
 ## Requirements
-1. Create a user service jar file.
+1. Generate a jar file for the user service.
 2. Create a docker file for the user service. Add the necessary dependencies like openjdk:17. Add entrypoint to run the jar file.
 3. Run the docker file to create a docker image using the command `docker build -t sweliamonteiro/userservice:v1.0 .` 
 4. `sweliamonteiro` is the docker hub username which you get after creating an account on [Docker Hub](https://hub.docker.com/) and `userservice` is the image name. `v1.0` is the version of the image.
