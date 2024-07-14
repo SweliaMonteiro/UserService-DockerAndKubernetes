@@ -1,0 +1,26 @@
+apiVersion: apps/v1   # Specifies the version of the Kubernetes API used to create this object
+kind: Deployment   # Specifies the type of Kubernetes resource
+metadata:
+  name: userservice   # This is the name of the deployment, it should be in lowercase
+  labels:
+    app: UserService   # This is the label of the deployment, it can be anything
+spec:
+  replicas: 5   # This is the number of pods that will be created and maintained at all times
+  selector:
+    matchLabels:
+      app: UserService   # This is the name of the app, it should be same as the application name in application.properties
+  template:   # Describes the Pod template that will be used to create new Pods managed by the Deployment
+    metadata:   # Metadata specific to the Pod template
+      name: UserService   # Name of the Pod template
+      labels:
+        app: UserService   # Labels applied to Pods created from this template, it should be same as the application name in application.properties
+    spec:   # Defines the specification for the Pods created from this template
+      containers:   # Specifies the containers to run in the Pod
+        - name: userservice   # Name of the container, should be in lowercase
+          image: sweliamonteiro/userservice:v1.0   # Docker image to use for the container
+          imagePullPolicy: IfNotPresent   # Specifies when to pull the image, IfNotPresent means it will only pull the image if it is not already present
+          ports:   # Specifies the ports that the container listens on
+            - containerPort: 80   # Port that the container listens on
+              protocol: TCP   # Protocol that the container listens on
+      restartPolicy: Always   # Specifies the restart policy for the Pod
+      

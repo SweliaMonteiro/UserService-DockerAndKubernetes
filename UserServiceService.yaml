@@ -1,0 +1,13 @@
+apiVersion: v1   # Specifies the version of the Kubernetes API
+kind: Service   # Specifies the type of Kubernetes resource. Service is used to define a set of Pods and a policy to access them.
+metadata:
+  name: userservice   # This is the name of the service, it should be in lowercase
+spec:
+  selector:   # Specifies how the Service identifies which Pods to target
+    app: UserService   # Service will route traffic to Pods that have a label app: UserService
+  ports:
+    - protocol: TCP   # Protocol that the service listens on
+      port: 80   # Specifies the port number on which the Service will listen for incoming traffic. External clients can access the Service on port 80.
+      targetPort: 8081   # Specifies the port on the Pods to which traffic should be forwarded. targetPort: 8081 means incoming traffic on port 80 of the Service will be forwarded to port 8081 on the Pods selected by the Service's selector.
+  type: LoadBalancer   # LoadBalancer is used to expose the Service outside the cluster or external clients. It will create a LoadBalancer in the cloud provider to route external traffic to the Service.
+  
